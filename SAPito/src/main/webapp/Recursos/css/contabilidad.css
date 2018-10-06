@@ -1,0 +1,73 @@
+/*general*/
+h4{
+    font-weight: bold;
+}
+/* parte izquierda de la pagina*/
+.izquierda{
+	margin:0;
+	}
+.tabla{
+	margin:0;
+	width:100%;
+	}
+.tabla tr{
+	width:100%
+}
+	
+.tabla tr td{
+	margin:0;
+	padding:5%;
+	width:100%;
+}
+/* color para enlaces #E0E0E0*/
+.tabla tr td:hover{	
+	background:#E0E0E0;
+	padding:5%;
+	width:100%;
+}
+.tabla tr td a{
+	text-decoration:none;
+	padding:5%;
+	display:block;
+}
+.tabla tr td a:hover{
+	padding:5%;
+	text-decoration:none;
+	display:block;
+}
+
+/*Parte central*/
+.titulo{
+	text-align:center;
+	}
+/*Seccion para tablas*/        
+/*Titulos de las tablas(encabezados)*/
+.tablas{
+    margin:30px auto;
+}
+.tablas tr th{
+    text-align: center;
+    color: white;
+    background: #007bff;    
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    padding: 2px;
+        
+}
+.tablas tr td{
+        padding: 2px;
+        text-align: center;
+        border-style: solid;
+        border-width: 1px;
+        }        
+.scroll-y{
+        height: 350px;
+	width: auto;
+	overflow: auto;
+	border: 1px solid #666;
+	background-color: #EBEDEF;
+	padding: 8px;
+        margin: auto auto;
+        border-radius: 25px;
+        }        
