@@ -46,8 +46,10 @@ public class DespedirEmpleado extends HttpServlet {
             if(!lista.isEmpty()){
                 c.actualizar("status = 'Despedido'", "empleado", "id = " + empleado);
                 c.actualizar("actividad = ''", "empleado", "id = " + empleado);
+                int i = c.insercionRegistro(1,  "rh", "Despido de empleado");
                 response.sendRedirect("RecursosHumanos/DespedirEmpleado.jsp");
             }else{
+                int i = c.insercionRegistro(1,  "rh", "Intento de despido de empleado");
                 request.getSession().setAttribute("motivo", "El empleado no existe");
                 response.sendRedirect("RH/Error.jsp");
             }

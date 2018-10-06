@@ -52,6 +52,9 @@ public class BuscarEmpleado extends HttpServlet {
                 }
             }
         }
+        
+        int i = c.insercionRegistro(1,  "rh", "Busqueda de empleado");
+        
         request.getSession().setAttribute("empleados", lista);
         response.sendRedirect("RH/BuscarResultado.jsp");
     }

@@ -37,6 +37,9 @@ public class ActividadEmpleado extends HttpServlet {
             String empleado = request.getParameter("actividadIdEmp");
             String actividad = request.getParameter("actividadEmpleado");
             ArrayList lista = c.consulta("id", "empleado", "id = "+ empleado, 1);
+            
+            int i = c.insercionRegistro(1,  "rh", "Actividad del empleado");
+            
             if(!lista.isEmpty()){
                 c.actualizar("actividad = '" + actividad + "'", "empleado", "id = " + empleado);
                 response.sendRedirect("RH/ActividadEmpleado.jsp");

@@ -44,7 +44,7 @@ public class EliminarCuentaEmpresa extends HttpServlet {
         System.out.println("referencia="+referencia);
         c.borrar("cuentaempresa", referencia);
         
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), "contabilidad", "Elimino cuenta empresa");
+        int i = c.insercionRegistro(1, "contabilidad", "Elimino cuenta empresa");
         
         response.sendRedirect("Contabilidad/CuentasEmpresa.jsp");
     }

@@ -51,6 +51,9 @@ public class ContratarEmpleado extends HttpServlet {
                 + "puesto,horario,actividad,sueldo,cuenta,status,contrasena", "empleado",
                 "'"+nombre+"','"+paterno+"','"+materno+"','"+nac+"','"+curp+"','"+rfc+"',"+edad+",'"+lugar+"','"+dir+"','"+tel+"',"+area
                         +","+puesto+",'"+horario+"','"+activ+"',"+sueldo+",'"+cuenta+"','Activo','sap123'");
+        
+        int i = c.insercionRegistro(1,  "rh", "Contratacion de empleado empleado");
+        
         response.sendRedirect("RH/ContratarEmpleado.jsp");
     }
 

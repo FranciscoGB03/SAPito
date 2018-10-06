@@ -52,6 +52,9 @@ public class ActualizarEmpleado extends HttpServlet {
                 "',nacionalidad = '"+nac+"',edad = "+edad+",lugar_nacimiento = '"+lugar+"',direccion = '"+dir+"',telefono = '"+tel+
                 "',area = "+area+",puesto = "+puesto+",horario = '"+horario+"',sueldo = "+sueldo+",cuenta = '"+cuenta+"'"
                 , "empleado", "id = "+empleado);
+        
+        int i = c.insercionRegistro(1,  "rh", "Actualizacion del empleado");
+        
         response.sendRedirect("RH/ModificarEmpleado.jsp");
     }
 

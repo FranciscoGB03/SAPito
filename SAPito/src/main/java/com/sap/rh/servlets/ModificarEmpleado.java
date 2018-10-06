@@ -38,8 +38,10 @@ public class ModificarEmpleado extends HttpServlet {
                     + "area,puesto,horario,sueldo,cuenta,id","empleado", "id = "+empleado, 16);
         if(!lista.isEmpty()){
             request.getSession().setAttribute("empleado",lista);
+            int i = c.insercionRegistro(1,  "rh", "Modifica empleado");
             response.sendRedirect("RH/ModificarResultado.jsp");
         }else{
+            int i = c.insercionRegistro(1,  "rh", "Intento modificar empleado");
             request.getSession().setAttribute("motivo", "El empleado no existe");
             response.sendRedirect("RH/Error.jsp");
         }

@@ -62,7 +62,7 @@ public class AgregarAsientoDetalle extends HttpServlet {
             System.out.println("campos proveedor:"+campospro);
             c.insertar(campospro, tabla, valores2);
         }
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"),  "contabilidad", "Agrego asiento a detalle");
+        int i = c.insercionRegistro(1,  "contabilidad", "Agrego asiento a detalle");
         response.sendRedirect("Contabilidad/AsientosContables.jsp");        
     }
 

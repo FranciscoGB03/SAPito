@@ -38,8 +38,10 @@ public class EliminarNomina extends HttpServlet {
             ArrayList lista =  c.consulta("id", "nomina", "id = " + nomina, 1);
             if(!lista.isEmpty()){
                 c.actualizar("situacion = 3", "nomina", "id = " + nomina);
+                int i = c.insercionRegistro(1,  "rh", "Elimina empleado");
                 response.sendRedirect("RH/EliminarNomina.jsp");
             }else{
+                int i = c.insercionRegistro(1,  "rh", "Intento de eliminar empleado");
                 request.getSession().setAttribute("motivo", "La nómina no existe");
                 response.sendRedirect("RH/Error.jsp");
             }

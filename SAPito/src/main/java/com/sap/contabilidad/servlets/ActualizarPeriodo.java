@@ -42,7 +42,7 @@ public class ActualizarPeriodo extends HttpServlet {
         String referencia="clave='"+request.getParameter("claveperiodo")+"'";
         System.out.println("cadena de referencia:"+referencia);
         c.actualizar(campos,"calen_contable", referencia);
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), "contabilidad", "Actualiza Periodo");
+        int i = c.insercionRegistro(1, "contabilidad", "Actualiza Periodo");
         response.sendRedirect("Contabilidad/CalendarioContable.jsp");
         
     }
