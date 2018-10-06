@@ -50,6 +50,7 @@ public class AgregarAsientoGeneral extends HttpServlet {
         String valores="'"+clave+"',"+area+","+periodo+", '"+fecha+"','"+concepto+"'";
         System.out.println("valores:"+valores);        
         c.insertar(campos, tabla, valores);
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Agrego asiento general");
         response.sendRedirect("Contabilidad/AsientosContables.jsp");
         
     }

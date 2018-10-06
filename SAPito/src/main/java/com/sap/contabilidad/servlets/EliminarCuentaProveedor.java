@@ -41,6 +41,10 @@ public class EliminarCuentaProveedor extends HttpServlet {
         String referencia="id="+clave;
         System.out.println("referencia:"+referencia);
         c.borrar("cuentaproveedor", referencia);
+        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Elimino cuenta proveedor");
+        
+        
         response.sendRedirect("Contabilidad/CuentasProveedor.jsp");
     }
 

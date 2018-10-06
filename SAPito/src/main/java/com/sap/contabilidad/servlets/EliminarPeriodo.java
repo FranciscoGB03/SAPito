@@ -39,6 +39,9 @@ public class EliminarPeriodo extends HttpServlet {
         String clave=request.getParameter("clavep");
         String referencia="clave='"+clave+"'";
         c.borrar("calen_contable", referencia);
+        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Elimino periodo");
+        
         response.sendRedirect("Contabilidad/CalendarioContable.jsp");                
     }
 
