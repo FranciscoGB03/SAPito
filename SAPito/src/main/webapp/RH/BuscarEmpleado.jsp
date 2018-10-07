@@ -9,10 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--CSS3 personalizado-->
-        <link href="../Recursos/css/RecursosHumanos.css" rel="stylesheet" type="text/css"/>
-        <!--Validacion de campos-->
-        <script src="../Recursos/js/RecursosHumanos.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <link href="../Recursos/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
@@ -20,6 +16,10 @@
         <!-- Include all compiled plugins (below), or include individual files as needed --> 
         <script src="../Recursos/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../Recursos/Bootstrap/include/popper.min.js" type="text/javascript"></script>
+        <!--CSS3 personalizado-->
+        <link href="../Recursos/css/RecursosHumanos.css" rel="stylesheet" type="text/css"/>
+        <!--Validacion de campos-->
+        <script src="../Recursos/js/RecursosHumanos.js" type="text/javascript"></script>
         <title>Buscar&nbsp;Empleado</title>
     </head>
     <body onload="regreso();">

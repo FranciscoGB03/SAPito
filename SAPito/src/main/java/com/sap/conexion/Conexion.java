@@ -170,7 +170,7 @@ public class Conexion {
         openDB();
         int valor=1;
         PreparedStatement ps;
-        ps=conn.prepareStatement("INSERT INTO log(id,area,des) VALUES ("+id+",'"+area+"','"+des+"');");
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,des) VALUES ("+id+",'"+area+"','"+des+"');");
         valor= ps.executeUpdate();
         closeDB();        
         return valor;
