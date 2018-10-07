@@ -29,7 +29,7 @@ and open the template in the editor.
                         <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Historia</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item dropdown-submenu">
-                                <form onsubmit="return validalog(fecha, area, horaInicio, horaFin);" action="../../Consultalog" name="historial" method="post" autocomplete="off">
+                                <form onsubmit="return validalog(fecha, area, horaInicio, horaFin);" action="../Consultalog" name="historial" method="post" autocomplete="off">
                                     <label>Fecha
                                         <input type="date" name="fecha" id="fecha" max="3000-12-31"  min="1000-01-01" class="form-control">
                                     </label>
