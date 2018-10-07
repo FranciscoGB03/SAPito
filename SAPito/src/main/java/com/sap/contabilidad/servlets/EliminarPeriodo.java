@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -36,11 +37,12 @@ public class EliminarPeriodo extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         String clave=request.getParameter("clavep");
         String referencia="clave='"+clave+"'";
         c.borrar("calen_contable", referencia);
         
-        int i = c.insercionRegistro(1,  "contabilidad", "Elimino periodo");
+        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Elimino periodo");
         
         response.sendRedirect("Contabilidad/CalendarioContable.jsp");                
     }

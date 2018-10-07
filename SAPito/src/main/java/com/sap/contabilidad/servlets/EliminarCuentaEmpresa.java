@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -39,12 +40,13 @@ public class EliminarCuentaEmpresa extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         String clave=request.getParameter("codigoempresa");
         String referencia="id="+clave;
         System.out.println("referencia="+referencia);
         c.borrar("cuentaempresa", referencia);
         
-        int i = c.insercionRegistro(1, "contabilidad", "Elimino cuenta empresa");
+        int i = c.insercionRegistro(usu.getId_emp(), "contabilidad", "Elimino cuenta empresa");
         
         response.sendRedirect("Contabilidad/CuentasEmpresa.jsp");
     }

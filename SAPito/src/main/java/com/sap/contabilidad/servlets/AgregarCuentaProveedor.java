@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,7 +36,8 @@ public class AgregarCuentaProveedor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException{
             response.setContentType("text/html;charset=UTF-8");        
-            Conexion c=new Conexion();            
+            Conexion c=new Conexion();     
+            usuario usu = new usuario();
             String clave=request.getParameter("clavec");
             System.out.println("clave"+clave);
             String tipocuenta=request.getParameter("tipoCuenta");
@@ -45,7 +47,7 @@ public class AgregarCuentaProveedor extends HttpServlet {
             String campos="clave,idcuentaempresa,idproveedor";            
             c.insertar(campos, "cuentaproveedor",valores);
             
-            int i = c.insercionRegistro(1,  "contabilidad", "Agrego cuenta de proveedor");
+            int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego cuenta de proveedor");
             
             response.sendRedirect("Contabilidad/CuentasProveedor.jsp");        
     }

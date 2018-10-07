@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -39,6 +40,7 @@ public class AgregarPeriodoContable extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+        usuario usu = new usuario();        
         int resultado=0;        
         String campos="'"+request.getParameter("clavep")+"',"+request.getParameter("ejercicio")+",'"+ request.getParameter("fechaini")+"','"+request.getParameter("fechafin")+"','"+request.getParameter("estado")+"'";
         System.out.println("cadena:"+campos);         
@@ -46,7 +48,7 @@ public class AgregarPeriodoContable extends HttpServlet {
         resultado=c.insertar("clave,periodo,fechaini,fechafin,estatus","calen_contable", campos);                            
         System.out.println("el resultado fue:"+resultado);
         
-        int i = c.insercionRegistro(1,  "contabilidad", "Agrego periodo contable");
+        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego periodo contable");
         
         if(resultado!=1){
             request.getSession().setAttribute("motivo", "Error de conexión, intentelo nuevamente!");

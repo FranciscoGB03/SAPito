@@ -105,7 +105,7 @@ and open the template in the editor.
                     </div>  
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                         <div style="background-color: #fff; margin: 20px 2px;">
-                            <a  href="#">
+                            <a  href="../Inventario/Inventario.jsp">
                                 <h1 style="color: black; margin-left: 20px;">Inventarios</h1>
                                 <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">
                                     <canvas id="gInventarios" width="100%" height="80px"></canvas>
@@ -132,7 +132,7 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div style="background-color: #fff; margin: 20px 2px;">
-                            <a href="#">
+                            <a href="../Compras/Compras.jsp">
                                 <h1 style="color: black; margin-left: 20px;">Compras</h1>
                                 <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">                               
                                     <canvas id="gCompras" width="100%"></canvas>

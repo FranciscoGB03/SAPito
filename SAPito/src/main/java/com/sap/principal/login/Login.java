@@ -1,6 +1,7 @@
 package com.sap.principal.login;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -36,7 +37,9 @@ public class Login extends HttpServlet {
             System.out.println("usuario:"+usuario);
             System.out.println("pass:"+pass);
             Conexion c = new Conexion();
+            usuario usu = new usuario();
             ArrayList lista = c.consulta("area", "empleado", "id = "+usuario+" and contrasena = '"+pass+"'",1);
+            usu.setId_emp(Integer.parseInt(usuario));
             if(!lista.isEmpty()){
                 Integer area = Integer.parseInt(lista.get(0).toString());
                 System.out.println("area:"+area);

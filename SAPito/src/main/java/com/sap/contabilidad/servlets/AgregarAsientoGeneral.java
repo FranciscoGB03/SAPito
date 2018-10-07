@@ -7,6 +7,7 @@ package com.sap.contabilidad.servlets;
 
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -38,6 +39,7 @@ public class AgregarAsientoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c= new Conexion();
+        usuario usu = new usuario();
         String clave=request.getParameter("claveAsiento");
         String area=request.getParameter("modulo");
         String periodo=request.getParameter("periodo");
@@ -50,7 +52,7 @@ public class AgregarAsientoGeneral extends HttpServlet {
         String valores="'"+clave+"',"+area+","+periodo+", '"+fecha+"','"+concepto+"'";
         System.out.println("valores:"+valores);        
         c.insertar(campos, tabla, valores);
-        int i = c.insercionRegistro(1,  "contabilidad", "Agrego asiento general");
+        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego asiento general");
         response.sendRedirect("Contabilidad/AsientosContables.jsp");
         
     }

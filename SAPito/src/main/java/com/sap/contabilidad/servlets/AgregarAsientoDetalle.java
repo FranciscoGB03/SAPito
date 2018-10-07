@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -37,6 +38,7 @@ public class AgregarAsientoDetalle extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         //valor que determina la cuenta
         int tipo= Integer.valueOf(request.getParameter("tipo").toString());
         System.out.println("valor de tipo:"+tipo);
@@ -62,7 +64,7 @@ public class AgregarAsientoDetalle extends HttpServlet {
             System.out.println("campos proveedor:"+campospro);
             c.insertar(campospro, tabla, valores2);
         }
-        int i = c.insercionRegistro(1,  "contabilidad", "Agrego asiento a detalle");
+        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego asiento a detalle");
         response.sendRedirect("Contabilidad/AsientosContables.jsp");        
     }
 

@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -37,12 +38,13 @@ public class ActualizarPeriodo extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");             
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         String campos="periodo="+request.getParameter("ejercicio")+", fechaini='"+request.getParameter("fechaini")+"', fechafin='"+request.getParameter("fechafin")+"', estatus='"+request.getParameter("estado")+"'";
         System.out.println("los campos son:"+campos);
         String referencia="clave='"+request.getParameter("claveperiodo")+"'";
         System.out.println("cadena de referencia:"+referencia);
         c.actualizar(campos,"calen_contable", referencia);
-        int i = c.insercionRegistro(1, "contabilidad", "Actualiza Periodo");
+        int i = c.insercionRegistro(usu.getId_emp(), "contabilidad", "Actualiza Periodo");
         response.sendRedirect("Contabilidad/CalendarioContable.jsp");
         
     }

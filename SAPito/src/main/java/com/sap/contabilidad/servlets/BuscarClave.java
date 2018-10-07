@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -39,9 +40,10 @@ public class BuscarClave extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String cadena=request.getParameter("clavep");        
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         String campos="clave,periodo,fechaini,fechafin,estatus";
         ArrayList l=c.consultaVariosCamposUnaClave(cadena, campos,"calen_contable", 5);
-        int i = c.insercionRegistro(1,  "contabilidad", "Consulta clave");
+        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Consulta clave");
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */                  

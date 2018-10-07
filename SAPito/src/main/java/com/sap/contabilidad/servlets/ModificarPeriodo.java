@@ -6,6 +6,7 @@
 package com.sap.contabilidad.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class ModificarPeriodo extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+        usuario usu = new usuario();
         String clave=request.getParameter("clavep");
         System.out.println("la clave a buscar es:"+clave);
         String campos="clave,periodo,fechaini,fechafin,estatus";
@@ -47,7 +49,7 @@ public class ModificarPeriodo extends HttpServlet {
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("estatus", l.get(4));
         
-        int i = c.insercionRegistro(1, "contabilidad", "Elimino periodo");
+        int i = c.insercionRegistro(usu.getId_emp(), "contabilidad", "Elimino periodo");
         
         response.sendRedirect("Contabilidad/ModificarPeriodoContable.jsp");
     }
