@@ -1,12 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList lista = (ArrayList) request.getSession().getAttribute("lista"); %>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Informacion Gerencial</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -16,8 +14,9 @@ and open the template in the editor.
         <script src="../Gerencia/validaciones/validacion.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <header class="sticky-top">
+
+    <body> 
+         <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav class="navbar navbar-expand-lg navbar-dark barra" style="background: #C2C2C2;" >
                 <a class="navbar-brand text-white" href="../Gerencia/InicioGerencia.html"><h1>Informaci&oacute;n Gerencial</h1></a>
@@ -29,7 +28,7 @@ and open the template in the editor.
                         <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Historia</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item dropdown-submenu">
-                                <form onsubmit="return validalog(fecha, area, horaInicio, horaFin);" action="../../Consultalog" name="historial" method="post" autocomplete="off">
+                                <form onsubmit="return validalog(fecha, area, horaInicio, horaFin);" action="" name="historial" method="post" autocomplete="off">
                                     <label>Fecha
                                         <input type="date" name="fecha" id="fecha" max="3000-12-31"  min="1000-01-01" class="form-control">
                                     </label>
@@ -58,7 +57,7 @@ and open the template in the editor.
                         </ul>
                     </li>
                     <li class="nav-item dropdown" style="list-style:none;">
-                        <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Configuración</a>
+                        <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >ConfiguraciÃ³n</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item dropdown-submenu">
                                 <p>Configurar Web Services</p>
@@ -92,87 +91,27 @@ and open the template in the editor.
         <div id="principal">
             <div class="container-fluid" style="background-color: #EDEDED;"><!-- Seccion central (Visualizar tarea) -->
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                        <div style="background-color: #fff; margin: 20px 2px;">
-                            <a  href="../Contabilidad/Contabilidad.jsp">
-                                <h1 style="color: black; margin-left: 20px;">Contabilidad</h1>
-                                <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">
-                                    <canvas id="gContabilidad" width="100%" height="80px"></canvas>
-                                    <script type="text/javascript" src="../Gerencia/graficas/graficaContabilidad.js"></script>
-                                </div>
-                        </div>
-                        </a>     
-                    </div>  
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                        <div style="background-color: #fff; margin: 20px 2px;">
-                            <a  href="../Inventario/Inventario.jsp">
-                                <h1 style="color: black; margin-left: 20px;">Inventarios</h1>
-                                <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">
-                                    <canvas id="gInventarios" width="100%" height="80px"></canvas>
-                                    <script type="text/javascript" src="../Gerencia/graficas/graficaInventarios.js"></script>
-                                </div>
-                            </a>    
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                        <div style="background-color: #fff; margin: 20px 2px;">
-                            <a href="../RecursosHumanos/rh_index.jsp">
-                                <h1 style="color: black; margin-left: 20px;">Recursos Humanos</h1>
-                                <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">
-                                    <canvas id="gRH" width="100%" height="80px"></canvas>
-                                    <script type="text/javascript" src="../Gerencia/graficas/graficaRH.js"></script>
-                                </div>
-                        </div>
-                        </a>     
-                    </div>
-                </div>
-                <div class="row">
-                    <br>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div style="background-color: #fff; margin: 20px 2px;">
-                            <a href="../Compras/Compras.jsp">
-                                <h1 style="color: black; margin-left: 20px;">Compras</h1>
-                                <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">                               
-                                    <canvas id="gCompras" width="100%"></canvas>
-                                    <script type="text/javascript" src="../Gerencia/graficas/graficaCompras.js"></script>
-                                </div>
-                            </a>    
-                        </div>     
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div style="background-color: #fff; margin: 20px 2px;">
-                            <a href="#">
-                                <h1 style="color: black; margin-left: 20px;">Ventas</h1>
-                                <div class="row justify-content-center" style="margin-left: 20px; margin-right: 20px;">                               
-                                    <canvas id="gVentas" width="100%"></canvas>
-                                    <script type="text/javascript" src="../Gerencia/graficas/graficaVentas.js"></script>   
-                                </div>        
-                            </a>     
-                        </div>                                                 
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div style="background-color: #fff; margin: 0px 10px 10px 10px;">
-                    <br>
-                        <form action="../GeneraReporte" method="post">
-                        <center>
-                            <input class="btn btn-danger text-white" style="background-color: #000" type="submit" value="Generar Reporte" />
-                        </center>
-                    </form>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <table style="margin: 0 auto;width:100%;height:100%;">
+                        <tr>
+                            <td align="center">DESCRIPCI&Oacute;N</td>
+                            <td align="center">ID&nbsp;DEL&nbsp;EMPLEADO</td>
+                            <td align="center">&Aacute;REA</td>
+                            <td align="center">FECHA</td>
+                            <td align="center">HORA</td>
+                        </tr>
+                        <tr>
+                        <%
+                            for(int i = 0 ; i < lista.size() ; i++){
+                                if(i%5==0 && i!=0){out.print("</tr><tr>");}
+                                out.print("<td align='center'>"+lista.get(i)+"</td>");
+                            }
+                            request.getSession().removeAttribute("lista");
+                        %>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
-
-    </div> 
-</div>
-</body>
+    </body>
 </html>
