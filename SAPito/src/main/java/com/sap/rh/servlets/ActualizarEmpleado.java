@@ -1,6 +1,7 @@
 package com.sap.rh.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,6 +32,7 @@ public class ActualizarEmpleado extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
+        usuario usu = new usuario();
         String empleado = request.getParameter("idModificarEmp");
         String curp = request.getParameter("curpModificarEmp");
         String rfc = request.getParameter("rfcModificarEmp");
@@ -53,7 +55,7 @@ public class ActualizarEmpleado extends HttpServlet {
                 "',area = "+area+",puesto = "+puesto+",horario = '"+horario+"',sueldo = "+sueldo+",cuenta = '"+cuenta+"'"
                 , "empleado", "id = "+empleado);
         
-        int i = c.insercionRegistro(1,  "rh", "Actualizacion del empleado");
+        int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Actualizacion del empleado");
         
         response.sendRedirect("RH/ModificarEmpleado.jsp");
     }

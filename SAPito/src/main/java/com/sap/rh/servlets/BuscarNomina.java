@@ -2,6 +2,7 @@ package com.sap.rh.servlets;
 
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -35,6 +36,7 @@ public class BuscarNomina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String nomina = request.getParameter("buscarIdNomina");
         Conexion c = new Conexion();
+        usuario usu = new usuario();
         ArrayList lista;
         if(!nomina.isEmpty()){
             lista = c.consulta("id,empleado,cantidad,estado,origen_recurso,regimen,periodicidad,tipo,percepcion,situacion",
@@ -44,7 +46,7 @@ public class BuscarNomina extends HttpServlet {
                     "nomina", "id is not null", 10);
         }
         
-        int i = c.insercionRegistro(1,  "rh", "Busqueda de nomina");
+        int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Busqueda de nomina");
         
         request.getSession().setAttribute("nomina", lista);
         response.sendRedirect("RH/BuscarResultado.jsp");

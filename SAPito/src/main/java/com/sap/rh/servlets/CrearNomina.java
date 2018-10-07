@@ -1,6 +1,7 @@
 package com.sap.rh.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class CrearNomina extends HttpServlet {
         String tipo = request.getParameter("tipoCrearNomina");
         String percepcion = request.getParameter("percepcionCrearNomina");
         Conexion c = new Conexion();
+        usuario usu = new usuario();
         ArrayList lista = c.consulta("cuenta", "empleado", "id = "+empleado, 1);
         String cuenta = lista.get(0).toString();
         if(!cuenta.isEmpty()){
@@ -47,7 +49,7 @@ public class CrearNomina extends HttpServlet {
                     empleado+","+cantidad+",'"+cuenta+"','"+estado+"','"+recurso+"','"+regimen+"','"+periodicidad+"','"+tipo+"','"+percepcion+"',-1");
         }
         
-        int i = c.insercionRegistro(1,  "rh", "Crea una nomina");
+        int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Crea una nomina");
         
         response.sendRedirect("RH/CrearNomina.jsp");
     }

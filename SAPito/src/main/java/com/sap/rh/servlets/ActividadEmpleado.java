@@ -1,6 +1,7 @@
 package com.sap.rh.servlets;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -33,17 +34,20 @@ public class ActividadEmpleado extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
+        usuario usu = new usuario();
         try (PrintWriter out = response.getWriter()) {
             String empleado = request.getParameter("actividadIdEmp");
             String actividad = request.getParameter("actividadEmpleado");
             ArrayList lista = c.consulta("id", "empleado", "id = "+ empleado, 1);
             
-            int i = c.insercionRegistro(1,  "rh", "Actividad del empleado");
+            
             
             if(!lista.isEmpty()){
+                int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Actividad del empleado");
                 c.actualizar("actividad = '" + actividad + "'", "empleado", "id = " + empleado);
                 response.sendRedirect("RH/ActividadEmpleado.jsp");
             }else{
+                int i = c.insercionRegistro(usu.getId_emp(),  "rh", "No encuentra actividad del empleado");
                 request.getSession().setAttribute("motivo", "El empleado no existe");
                 response.sendRedirect("RH/Error.jsp");
             }

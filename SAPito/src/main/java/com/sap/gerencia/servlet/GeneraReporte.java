@@ -6,6 +6,7 @@
 package com.sap.gerencia.servlet;
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import com.sap.gerencia.pojo.Reporte;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,10 +41,11 @@ public class GeneraReporte extends HttpServlet {
 
         Conexion con = new Conexion();
         Reporte pdf = new Reporte();
+        usuario usu = new usuario();
         
         pdf.generarReporte();
         
-        int i = con.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Genero reporte");
+        int i = con.insercionRegistro(usu.getId_emp(), "Gerencia", "Genero reporte");
         
         response.sendRedirect("Gerencia/InicioGerencia.jsp");
     }

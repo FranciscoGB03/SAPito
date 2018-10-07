@@ -2,6 +2,7 @@ package com.sap.rh.servlets;
 
 
 import com.sap.conexion.Conexion;
+import com.sap.gerencia.clases.usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,14 +35,15 @@ public class ModificarEmpleado extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String empleado = request.getParameter("modificarIdEmpleado");
         Conexion c = new Conexion();
+        usuario usu = new usuario();
         ArrayList lista = c.consulta("nombre,primer_apellido,segundo_apellido,nacionalidad,curp,rfc,edad,lugar_nacimiento,direccion,telefono,"
                     + "area,puesto,horario,sueldo,cuenta,id","empleado", "id = "+empleado, 16);
         if(!lista.isEmpty()){
             request.getSession().setAttribute("empleado",lista);
-            int i = c.insercionRegistro(1,  "rh", "Modifica empleado");
+            int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Modifica empleado");
             response.sendRedirect("RH/ModificarResultado.jsp");
         }else{
-            int i = c.insercionRegistro(1,  "rh", "Intento modificar empleado");
+            int i = c.insercionRegistro(usu.getId_emp(),  "rh", "Intento modificar empleado");
             request.getSession().setAttribute("motivo", "El empleado no existe");
             response.sendRedirect("RH/Error.jsp");
         }
