@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,12 +38,14 @@ public class EliminarPeriodo extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
-        usuario usu = new usuario();
+        
         String clave=request.getParameter("clavep");
         String referencia="clave='"+clave+"'";
         c.borrar("calen_contable", referencia);
         
-        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Elimino periodo");
+        HttpSession sesion=(HttpSession) request.getSession();
+        int usu=Integer.valueOf(sesion.getAttribute("usuario").toString());
+        int i = c.insercionRegistro(usu,  "contabilidad", "Elimino periodo");
         
         response.sendRedirect("Contabilidad/CalendarioContable.jsp");                
     }

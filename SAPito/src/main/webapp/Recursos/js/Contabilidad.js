@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function regreso(){
+   window.location.hash="no-back-button";
+   window.location.hash="Again-No-back-button";
+   window.onhashchange=function(){window.location.hash="no-back-button";};
+}
 function habilitar(value){
         if(value=="1")
         {
@@ -17,3 +22,27 @@ function habilitar(value){
                 document.getElementById("cuentacli").disabled=true;
         }
 }
+
+$(document).ready(function() {
+                $('#submit').click(function(event) {
+                        var clavebuscar = $('#clave').val();        
+                        // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                        $.post('../BuscarClave', {
+                                clavep : clavebuscar
+                        }, function(responseText) {                            
+                                $('#tabla').html(responseText);
+                        });
+                });
+});
+
+$(document).ready(function() {
+                $('#btncliente').click(function(event) {
+                        var clavebuscar = $('#clave').val();        
+                        // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+                        $.post('../BuscarClaveCliente', {
+                                clavep : clavebuscar
+                        }, function(responseText) {                            
+                                $('#tabla').html(responseText);
+                        });
+                });
+});

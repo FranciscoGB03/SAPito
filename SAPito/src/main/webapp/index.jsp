@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    if (session != null) {  
+                    session.invalidate();                    
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

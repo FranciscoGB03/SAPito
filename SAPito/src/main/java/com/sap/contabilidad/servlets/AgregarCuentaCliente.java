@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,7 @@ public class AgregarCuentaCliente extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
-        usuario usu = new usuario();
+        
         String clave=request.getParameter("claveCuenta");
         System.out.println("clave"+clave);
         String tipocuenta=request.getParameter("tipoCuenta");
@@ -48,7 +49,9 @@ public class AgregarCuentaCliente extends HttpServlet {
         String campos="clave,idcuentaempresa,idcliente";            
         c.insertar(campos, "cuentacliente",valores);
         
-        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego cuenta de cliente");
+        HttpSession sesion=(HttpSession) request.getSession();
+        int usu=Integer.valueOf(sesion.getAttribute("usuario").toString());
+        int i = c.insercionRegistro(usu,  "contabilidad", "Agrego cuenta de cliente");
 
         response.sendRedirect("Contabilidad/CuentasCliente.jsp");
         

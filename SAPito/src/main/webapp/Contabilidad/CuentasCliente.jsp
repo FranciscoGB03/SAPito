@@ -10,8 +10,6 @@
 <title>Subastas</title>
 <!--Enlace a estilos personalizados de COntabilidad-->
 <link href="../Recursos/css/contabilidad.css" rel="stylesheet" type="text/css"/>
-<!--Validacion de campos-->
-<script src="../Recursos/js/Contabilidad.js" type="text/javascript"></script>
 <!-- Bootstrap -->
 <link href="../Recursos/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
@@ -19,6 +17,8 @@
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="../Recursos/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../Recursos/Bootstrap/include/popper.min.js" type="text/javascript"></script>
+<!--Validacion de campos-->
+<script src="../Recursos/js/Contabilidad.js" type="text/javascript"></script>
 </head>
 <body>    
     <header class="sticky-top">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="row">                        
                             <div class="col-xs-2">
-                              <input type="submit" value="buscar"/>       
+                              <input type="button" id="btncliente" value="buscar"/>       
                             </div>
                         </div>                    
                     </form>
@@ -98,7 +98,7 @@
             </div>            
         </div>
         <!--Columna Central-->
-        <div class="col-xs-6 col-md-6 central table-responsive">   
+        <div class="col-xs-6 col-md-6 central table-responsive" id="tabla">   
             <h1 class="titulo">Cuentas Clientes</h1>
             <div class="scroll-y">
                 <table class="tablas table">

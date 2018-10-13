@@ -1,3 +1,13 @@
+<%
+    if (session != null) {
+            if (Integer.valueOf(session.getAttribute("area").toString()) != 3 && Integer.valueOf(session.getAttribute("area").toString()) != 1) {
+                    session.invalidate();
+                    response.sendRedirect("../index.jsp");
+            }
+    }else if(session==null){
+                    response.sendRedirect("../index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +17,6 @@
 <title>Subastas</title>
 <!--Enlace a estilos personalizados de COntabilidad-->
 <link href="../Recursos/css/contabilidad.css" rel="stylesheet" type="text/css"/>
-<!--Validacion de campos-->
-<script src="../Recursos/js/Contabilidad.js" type="text/javascript"></script>
 <!-- Bootstrap -->
 <link href="../Recursos/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
@@ -16,8 +24,10 @@
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="../Recursos/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../Recursos/Bootstrap/include/popper.min.js" type="text/javascript"></script>
+<!--Validacion de campos-->
+<script src="../Recursos/js/Contabilidad.js" type="text/javascript"></script>
 </head>
-<body>    
+<body onload="regreso();">    
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
             <a href="Contabilidad.jsp" class="navbar-brand text-white">Contabilidad</a>
@@ -49,7 +59,7 @@
                         </div>
                     </li>                            
                 </ul>   
-               <form class="form-inline my-2 my-lg-0" action="../index.jsp">                
+               <form class="form-inline my-2 my-lg-0" action="../CerrarSesion">                
                     <button class="btn-outline-primary barra text-white my-2 my-sm-0" id="cerrarSesion" type="submit">Cerrar Sesi&oacute;n</button>
                 </form>
             </div>

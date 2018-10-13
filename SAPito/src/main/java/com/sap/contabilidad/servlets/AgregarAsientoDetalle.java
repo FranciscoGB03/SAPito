@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,8 @@ public class AgregarAsientoDetalle extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
-        usuario usu = new usuario();
+        HttpSession sesion=(HttpSession) request.getSession();
+        int usu=Integer.valueOf(sesion.getAttribute("usuario").toString());        
         //valor que determina la cuenta
         int tipo= Integer.valueOf(request.getParameter("tipo").toString());
         System.out.println("valor de tipo:"+tipo);
@@ -64,7 +66,7 @@ public class AgregarAsientoDetalle extends HttpServlet {
             System.out.println("campos proveedor:"+campospro);
             c.insertar(campospro, tabla, valores2);
         }
-        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Agrego asiento a detalle");
+        int i = c.insercionRegistro(usu,  "contabilidad", "Agrego asiento a detalle");
         response.sendRedirect("Contabilidad/AsientosContables.jsp");        
     }
 

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
@@ -38,11 +39,16 @@ public class Login extends HttpServlet {
             System.out.println("pass:"+pass);
             Conexion c = new Conexion();
             usuario usu = new usuario();
-            ArrayList lista = c.consulta("area", "empleado", "id = "+usuario+" and contrasena = '"+pass+"'",1);
+            ArrayList lista = c.consulta("area,id", "empleado", "id = "+usuario+" and contrasena = '"+pass+"'",2);
             usu.setId_emp(Integer.parseInt(usuario));
             if(!lista.isEmpty()){
                 Integer area = Integer.parseInt(lista.get(0).toString());
                 System.out.println("area:"+area);
+                HttpSession sesion= request.getSession(true);                
+                sesion.setAttribute("usuario",lista.get(1));
+                sesion.setAttribute("area",lista.get(0));
+                System.out.println("usuario:"+lista.get(1));
+                System.out.println("area:"+lista.get(0));
                 //c.insertar("descripcion", "log", "'Inicio de sesion para "+usuario+"'");
                 switch(area){
                     case 1 :
@@ -53,6 +59,15 @@ public class Login extends HttpServlet {
                         break;
                     case 3 :
                         response.sendRedirect("Contabilidad/Contabilidad.jsp");
+                        break;
+                    case 4 :
+                        response.sendRedirect("Ventas/Ventas.jsp");
+                        break;
+                    case 5 :
+                        response.sendRedirect("Compras/Compras.jsp");
+                        break;
+                    case 6 :
+                        response.sendRedirect("Inventarios/Inventarios.jsp");
                         break;
                     default:
                         response.sendRedirect("index.jsp");

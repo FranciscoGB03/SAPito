@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,13 +39,15 @@ public class EliminarCuentaProveedor extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
-        usuario usu = new usuario();
+        
         String clave=request.getParameter("codigoprov");
         String referencia="id="+clave;
         System.out.println("referencia:"+referencia);
         c.borrar("cuentaproveedor", referencia);
         
-        int i = c.insercionRegistro(usu.getId_emp(),  "contabilidad", "Elimino cuenta proveedor");
+        HttpSession sesion=(HttpSession) request.getSession();
+        int usu=Integer.valueOf(sesion.getAttribute("usuario").toString());
+        int i = c.insercionRegistro(usu,  "contabilidad", "Elimino cuenta proveedor");
         
         
         response.sendRedirect("Contabilidad/CuentasProveedor.jsp");
